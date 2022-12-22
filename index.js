@@ -138,7 +138,7 @@ app.put("/prescriptions/:name/:date", (req, res) => {
 });
 
 //DELETE MEDICATION
-app.delete("/medications/:name/:date", (req, res) => {
+app.put("/medications/:name/:date", (req, res) => {
   const name = req.params.name;
   const date = req.params.date;
   const medications = req.body.medications;
@@ -158,7 +158,7 @@ app.delete("/prescriptions/:name/:date", (req, res) => {
   const name = req.params.name;
   const date = req.params.date;
   db.collection("prescriptions")
-   .deleteOne({})
+   .deleteOne({name, date})
    .then((records) => {
       return res.json(records);
    })
